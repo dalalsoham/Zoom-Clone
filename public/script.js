@@ -30,6 +30,24 @@ navigator.mediaDevices.getUserMedia({
     socket.on('user-connected', (userId) =>{
         connecToNewUser(userId, stream);
      })
+     //text input start
+     let text = $('input')
+     
+     //charbox stuff
+     $('html').keydown((e) => {
+         if(e.which == 13 && text.val().length !== 0)
+         {
+             console.log(text.val());
+             socket.emit('message', text.val());
+             text.val('');
+         }
+     });
+     
+     socket.on('createMessage', message => {
+        
+         $('ul').append(`<li class="message"><b>user</b>${message}</li>`);
+     })
+     //text input end
 })
 
 peer.on('open', id => {
@@ -53,3 +71,4 @@ const addVideoStream = (video, stream) =>{
     })
     videoGrid.append(video);
 }
+
