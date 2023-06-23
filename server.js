@@ -24,6 +24,10 @@ io.on('connection', socket =>{
     socket.on('join-room' , (roomId, userId) =>{
         socket.join(roomId);
         socket.to(roomId).emit('user-connected', userId);
+
+        socket.on('meage', message => {
+            io.to(roomId).emit('createMessage', message);
+        })
     })
 })
 
