@@ -31,7 +31,7 @@ navigator.mediaDevices.getUserMedia({
         connecToNewUser(userId, stream);
      })
      //text input start
-     let text = $('input')
+     let text = $('input');
      
      //charbox stuff
      $('html').keydown((e) => {
@@ -44,7 +44,7 @@ navigator.mediaDevices.getUserMedia({
      });
      
      socket.on('createMessage', message => {
-        
+        // console.log("create message", message);
          $('ul').append(`<li class="message"><b>user</b>${message}</li>`);
      })
      //text input end
